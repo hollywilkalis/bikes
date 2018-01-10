@@ -1,14 +1,16 @@
-export function apiCall(inputZip, inputDistance){
-  let returnResponse;
+export function apiCall(inputZip, inputDistance, addToPage){
   $.ajax({
-    url: `https://bikeindex.org:443/api/v3/search?stolenness=stolen&location=${inputZip}&distance=${inputDistance}`,
+    url: `https://bikeindex.org:443/api/v3/search?location=${inputZip}&distance=${inputDistance}&stolenness=proximity`,
     type: 'GET',
     data: {
       format: 'json'
     },
     success: function(response) {
-      response = returnResponse;
       console.log(`Success`);
+    },
+    complete: function(response){
+      let bikeInfo = JSON.parse(response.responseText);
+      addToPage(bikeInfo);
     },
     error: function() {
       console.error(`API Error`);
@@ -17,6 +19,5 @@ export function apiCall(inputZip, inputDistance){
     }
   }).done(function(){
     console.log(`done function`);
-    return returnResponse;
   });
 }
