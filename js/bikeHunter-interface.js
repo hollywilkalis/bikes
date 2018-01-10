@@ -2,7 +2,11 @@ import { apiCall } from './../js/bikeHunter.js';
 function addToPage(bikeInfo){
   console.log(bikeInfo);
   for (var i = 0; i < bikeInfo.bikes.length; i++) {
-    $('h1').append(`<div class="bike-item">${bikeInfo.bikes[i].title}<br>Serial Number: ${bikeInfo.bikes[i].serial}<br>Stolen From: ${bikeInfo.bikes[i].stolen_location}</div>`);
+    console.log(i);
+    var convertDate = moment.unix(bikeInfo.bikes[i].date_stolen).calendar(); // or end in .format("MM-DD-YYYY HH:mm")
+    console.log(convertDate);
+    // $('div').append(`<p class="bike-item">${bikeInfo.bikes[i].title}<br>Serial Number: ${bikeInfo.bikes[i].serial}<br>Stolen From: ${bikeInfo.bikes[i].stolen_location}<br>Date Stolen: ${bikeInfo.bikes[i].date_stolen}</p>`);
+    $('div').append(`<p class="bike-item">${bikeInfo.bikes[i].title}<br>Serial Number: ${bikeInfo.bikes[i].serial}<br>Stolen From: ${bikeInfo.bikes[i].stolen_location}<br>Date Stolen: ${convertDate}</p>`);
   }
 }
 $(document).ready(function(){
