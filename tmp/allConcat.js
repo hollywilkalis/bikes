@@ -1,4 +1,5 @@
-import { apiCall } from './../js/bikeHunter.js';
+import { apiCallPromise } from './../js/bikeHunter.js';
+// import { apiCallAjax } from './../js/bikeHunter.js';
 
 function addToPage(bikeInfo){
   console.log(bikeInfo);
@@ -15,6 +16,6 @@ $(document).ready(function(){
     event.preventDefault();
     let inputZip = $("#location").val();
     let inputDistance = $("#distance").val();
-    apiCall(inputZip, inputDistance, addToPage);
+    apiCallPromise(inputZip, inputDistance, addToPage);
   });
 });
